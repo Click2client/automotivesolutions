@@ -4,15 +4,16 @@ import { contactContent } from "@/content/contact";
 
 const errors = contactContent.form.errors;
 
+const dutchPhone = /^(?:0[1-9]\d{8}|\+31[1-9]\d{8}|0031[1-9]\d{8})$/;
+
+function isDutchPhone(value: string): boolean {
+  return dutchPhone.test(value.replace(/[\s().-]/g, ""));
+}
+
 export const contactSchema = z.object({
   name: z.string().trim().min(2, errors.name).max(100, errors.nameLength),
-  email: z.string().trim().email(errors.email).max(200, errors.email),
-  phone: z.string().trim().max(30, errors.phone),
-  message: z
-    .string()
-    .trim()
-    .min(10, errors.message)
-    .max(5000, errors.messageLength),
+  phone: z.string().trim().refine(isDutchPhone, errors.phone),
+  message: z.string().trim().max(5000, errors.messageLength),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

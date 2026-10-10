@@ -47,7 +47,8 @@ export function organizationJsonLd(): Record<string, unknown> {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: site.legalName,
+    name: site.name,
+    legalName: site.legalName,
     url: getSiteUrl(),
     logo: absoluteUrl(site.logo),
     image: absoluteUrl(site.logo),

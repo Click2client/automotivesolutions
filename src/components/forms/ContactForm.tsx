@@ -41,73 +41,63 @@ export function ContactForm({ siteKey, fallbackContact }: ContactFormProps) {
       ref={formRef}
       id="contactformulier"
       action={formAction}
-      className="relative scroll-mt-24 rounded-2xl border border-line bg-surface p-5 sm:p-8"
+      className="relative grid gap-5 rounded-[4px] border border-line bg-surface-warm p-[clamp(28px,3vw,44px)]"
       noValidate
+      aria-busy={pending}
     >
-      <h2 className="font-heading text-2xl text-ink">{form.title}</h2>
-      <div className="mt-6 grid gap-5">
-        <Input
-          id="naam"
-          name="name"
-          label={form.name}
-          autoComplete="name"
-          required
-          error={state.fieldErrors.name}
-        />
-        <Input
-          id="email"
-          name="email"
-          type="email"
-          label={form.email}
-          autoComplete="email"
-          required
-          error={state.fieldErrors.email}
-        />
-        <Input
-          id="telefoon"
-          name="phone"
-          type="tel"
-          label={form.phone}
-          autoComplete="tel"
-          error={state.fieldErrors.phone}
-        />
-        <Textarea
-          id="bericht"
-          name="message"
-          label={form.message}
-          required
-          error={state.fieldErrors.message}
-        />
-      </div>
+      <p className="mb-1 text-base leading-[1.6] text-body">{form.title}</p>
+      <Input
+        id="naam"
+        name="name"
+        label={form.name}
+        autoComplete="name"
+        required
+        error={state.fieldErrors.name}
+      />
+      <Input
+        id="telefoon"
+        name="phone"
+        type="tel"
+        label={form.phone}
+        autoComplete="tel"
+        required
+        error={state.fieldErrors.phone}
+      />
+      <Textarea
+        id="bericht"
+        name="message"
+        label={form.message}
+        rows={3}
+        error={state.fieldErrors.message}
+      />
       <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
         <label htmlFor="website">{form.honeypot}</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
-      <div className="mt-5">
-        {siteKey ? (
-          <TurnstileWidget siteKey={siteKey} />
-        ) : (
-          <p className="text-sm font-semibold text-danger">
-            {form.turnstileNotReady} {fallbackContact}.
-          </p>
-        )}
-      </div>
-      <p ref={statusRef} tabIndex={-1} aria-live="polite" className="mt-4 text-sm font-semibold">
-        {state.status === "success" ? (
-          <span className="text-ink">{state.message}</span>
-        ) : null}
-        {state.status === "error" && state.message ? (
-          <span className="text-danger">{state.message}</span>
-        ) : null}
-      </p>
-      <div className="mt-4">
-        <Button type="submit" disabled={pending}>
+      {siteKey ? (
+        <TurnstileWidget siteKey={siteKey} />
+      ) : (
+        <p className="text-[13px] text-danger">
+          {form.turnstileNotReady} {fallbackContact}.
+        </p>
+      )}
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <Button type="submit" variant="ink" disabled={pending} className="h-[50px] px-6 text-[15px]">
           {pending ? form.sending : form.submit}
         </Button>
+        <p
+          ref={statusRef}
+          tabIndex={-1}
+          aria-live="polite"
+          className={`text-[13px] ${state.status === "error" ? "text-danger" : "text-ink"}`}
+        >
+          {state.status === "success" ? state.message : null}
+          {state.status === "error" && state.message ? state.message : null}
+        </p>
       </div>
-      <p className="mt-4 text-sm text-muted">
+      <p className="text-[13px] leading-normal text-secondary">
         {form.privacyText}{" "}
-        <Link href="/privacy" className="font-semibold text-ink underline underline-offset-2">
+        <Link href="/privacy-statement" className="font-medium text-ink underline underline-offset-2">
           {form.privacyLink}
         </Link>
         .

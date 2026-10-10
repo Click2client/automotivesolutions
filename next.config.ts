@@ -51,6 +51,15 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [
+      { source: "/over-ons", destination: "/#over", permanent: false },
+      { source: "/diensten", destination: "/#diensten", permanent: false },
+      { source: "/contact", destination: "/#contact", permanent: false },
+      { source: "/privacy", destination: "/privacy-statement", permanent: false },
+      { source: "/algemene-voorwaarden", destination: "/leveringsvoorwaarden", permanent: false },
+    ];
+  },
   async headers() {
     return [
       {

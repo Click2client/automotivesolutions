@@ -15,14 +15,17 @@ export function Textarea({
   required = false,
   error,
   defaultValue,
-  rows = 6,
+  rows = 3,
 }: TextareaProps) {
   const errorId = `${id}-fout`;
 
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-semibold text-ink">
-        {label}
+    <div className="grid gap-2">
+      <label htmlFor={id} className="text-sm font-medium text-ink">
+        {label}{" "}
+        <span className="font-normal text-secondary">
+          {required ? "(verplicht)" : "(optioneel)"}
+        </span>
       </label>
       <textarea
         id={id}
@@ -32,12 +35,12 @@ export function Textarea({
         defaultValue={defaultValue}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
-        className={`rounded-lg border bg-surface px-3 py-2 text-base text-ink ${
-          error ? "border-danger" : "border-line"
+        className={`resize-y rounded-[3px] border bg-surface px-3.5 py-3 font-sans text-base text-ink focus-visible:border-ink ${
+          error ? "border-danger" : "border-line-input"
         }`}
       />
       {error ? (
-        <p id={errorId} className="text-sm font-semibold text-danger">
+        <p id={errorId} className="text-[13px] text-danger">
           {error}
         </p>
       ) : null}

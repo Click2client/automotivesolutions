@@ -7,7 +7,6 @@ import { env, isMailConfigured } from "@/lib/env";
 
 export type ContactMessage = {
   name: string;
-  email: string;
   phone: string;
   message: string;
 };
@@ -24,10 +23,9 @@ export async function sendContactEmail(
   const safeName = input.name.replace(/[\r\n]+/g, " ").slice(0, 80);
   const text = [
     `Naam: ${input.name}`,
-    `E-mail: ${input.email}`,
-    `Telefoon: ${input.phone || "-"}`,
+    `Telefoon: ${input.phone}`,
     "",
-    input.message,
+    input.message || "-",
   ].join("\n");
 
   try {
@@ -35,8 +33,7 @@ export async function sendContactEmail(
     const { error } = await resend.emails.send({
       from: env.CONTACT_FROM_EMAIL,
       to: env.CONTACT_TO_EMAIL,
-      replyTo: input.email,
-      subject: `Contactformulier: ${safeName}`,
+      subject: `Terugbelverzoek: ${safeName}`,
       text,
     });
 

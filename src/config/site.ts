@@ -12,68 +12,62 @@ export type SitePage = {
 const hasTerms = true;
 
 export const site = {
-  name: "Voorbeeldbedrijf",
-  legalName: "Voorbeeldbedrijf B.V.",
-  url: "https://www.voorbeeldbedrijf.nl",
+  name: "Automotive Solutions",
+  legalName: "Rob Nieman",
+  url: "https://automotive-solutions.nl",
   description:
-    "Voorbeeldbedrijf maakt overzichtelijke websites voor kleine bedrijven, zodat bezoekers snel zien wat je doet en contact kunnen opnemen. Plan een gesprek.",
+    "Rob Nieman licht uw automotive-bedrijf door en begeleidt u bij logistiek, administratie en management. Bel hem in Twisk voor een vrijblijvend gesprek.",
   locale: "nl-NL",
   logo: "/images/logo.png",
   contact: {
-    email: "info@voorbeeldbedrijf.nl",
-    phone: "+31201234567",
-    phoneDisplay: "020 123 45 67",
+    email: "organisatie@quicknet.nl",
+    phone: "+31645682968",
+    phoneDisplay: "06-45682968",
   },
   address: {
-    street: "Voorbeeldstraat 12",
-    postalCode: "1012 AB",
-    city: "Amsterdam",
+    street: "Dorpsweg 23",
+    postalCode: "1676 GC",
+    city: "Twisk",
     country: "Nederland",
     countryCode: "NL",
   },
-  kvk: "12345678",
-  vat: "NL123456789B01",
-  socials: [
-    {
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/company/voorbeeldbedrijf",
-    },
-  ],
+  kvk: "37122225",
+  vat: "NL187527453B01",
+  socials: [] as { name: string; url: string }[],
   navigation: [
-    { label: "Over ons", href: "/over-ons" },
-    { label: "Diensten", href: "/diensten" },
-    { label: "Contact", href: "/contact" },
+    { label: "Over Rob", href: "#over" },
+    { label: "Wat ik doe", href: "#diensten" },
+    { label: "Werkwijze", href: "#werkwijze" },
+    { label: "Contact", href: "#contact" },
   ],
   footerNavigation: [
-    { label: "Privacy", href: "/privacy" },
+    { label: "Leveringsvoorwaarden", href: "/leveringsvoorwaarden" },
+    { label: "Privacy statement", href: "/privacy-statement" },
+    { label: "Disclaimer", href: "/disclaimer" },
     { label: "Cookies", href: "/cookies" },
-    ...(hasTerms
-      ? [{ label: "Algemene voorwaarden", href: "/algemene-voorwaarden" }]
-      : []),
   ],
   pages: [
     { path: "/", changeFrequency: "weekly", priority: 1 },
-    { path: "/over-ons", changeFrequency: "monthly", priority: 0.8 },
-    { path: "/diensten", changeFrequency: "monthly", priority: 0.8 },
-    { path: "/contact", changeFrequency: "yearly", priority: 0.7 },
-    { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/leveringsvoorwaarden", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/privacy-statement", changeFrequency: "yearly", priority: 0.3 },
+    { path: "/disclaimer", changeFrequency: "yearly", priority: 0.3 },
     { path: "/cookies", changeFrequency: "yearly", priority: 0.3 },
-    ...(hasTerms
-      ? [
-          {
-            path: "/algemene-voorwaarden",
-            changeFrequency: "yearly" as const,
-            priority: 0.3,
-          },
-        ]
-      : []),
   ],
   legal: {
     hasTerms,
-    lastUpdated: "26 september 2026",
+    lastUpdated: "10 oktober 2026",
+  },
+  features: {
+    showReferences: true,
+    showForm: true,
+    showMap: true,
   },
   verification: {
-    google: "voorbeeld-zoekconsole-code",
+    google: "",
+  },
+  credit: {
+    label: "Click2Client",
+    url: "https://click2client.nl",
   },
 } satisfies {
   name: string;
@@ -97,7 +91,9 @@ export const site = {
   footerNavigation: NavItem[];
   pages: SitePage[];
   legal: { hasTerms: boolean; lastUpdated: string };
+  features: { showReferences: boolean; showForm: boolean; showMap: boolean };
   verification: { google: string };
+  credit: { label: string; url: string };
 };
 
 export function formatAddress(): string {

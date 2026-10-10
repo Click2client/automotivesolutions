@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
-import { site } from "@/config/site";
 import { env } from "@/lib/env";
+import { getSiteUrl } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
   if (env.VERCEL_ENV !== "production") {
@@ -18,7 +18,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: new URL("/sitemap.xml", site.url).toString(),
-    host: site.url,
+    sitemap: new URL("/sitemap.xml", getSiteUrl()).toString(),
+    host: getSiteUrl(),
   };
 }

@@ -11,11 +11,17 @@ export const ui = {
   footerContact: "Contact",
   footerLegal: "Juridisch",
   kvkLabel: "KvK",
-  vatLabel: "Btw",
+  vatLabel: "BTW",
   lastUpdated: "Laatst bijgewerkt",
   homeLabel: "Home",
   breadcrumbLabel: "Kruimelpad",
   opensInNewTab: "opent in een nieuw venster",
+  backToSite: "Terug naar de website",
+  mobileCall: "Bel Rob",
+  footerCredit: "Website gerealiseerd door",
+  legalNav: "Juridische pagina's",
+  onThisPage: "Inhoud",
+  mapCredit: "Kaartgegevens © OpenStreetMap",
 } as const;
 
 export const legalNotice: LegalNotice = {

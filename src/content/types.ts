@@ -73,3 +73,24 @@ export type LegalNotice = {
   title: string;
   text: string;
 };
+
+export type LegalBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "bullets"; items: string[] }
+  | { type: "steps"; items: string[]; start?: number }
+  | { type: "subheading"; text: string };
+
+export type LegalArticle = {
+  id: string;
+  heading: string;
+  blocks: LegalBlock[];
+};
+
+export type LegalPageContent = {
+  metadata: PageMeta;
+  title: string;
+  intro: string;
+  contactLead: string;
+  articles: LegalArticle[];
+  notice?: LegalNotice;
+};

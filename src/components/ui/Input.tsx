@@ -23,9 +23,12 @@ export function Input({
   const inputMode = type === "email" ? "email" : type === "tel" ? "tel" : undefined;
 
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-semibold text-ink">
-        {label}
+    <div className="grid gap-2">
+      <label htmlFor={id} className="text-sm font-medium text-ink">
+        {label}{" "}
+        <span className="font-normal text-secondary">
+          {required ? "(verplicht)" : "(optioneel)"}
+        </span>
       </label>
       <input
         id={id}
@@ -37,12 +40,12 @@ export function Input({
         defaultValue={defaultValue}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId : undefined}
-        className={`min-h-11 rounded-lg border bg-surface px-3 text-base text-ink ${
-          error ? "border-danger" : "border-line"
+        className={`h-12 rounded-[3px] border bg-surface px-3.5 font-sans text-base text-ink focus-visible:border-ink ${
+          error ? "border-danger" : "border-line-input"
         }`}
       />
       {error ? (
-        <p id={errorId} className="text-sm font-semibold text-danger">
+        <p id={errorId} className="text-[13px] text-danger">
           {error}
         </p>
       ) : null}

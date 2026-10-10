@@ -2,43 +2,42 @@ import type { PageMeta } from "@/content/types";
 
 export const contactContent = {
   metadata: {
-    title: "Neem contact op voor een gesprek",
+    title: "Bel Rob Nieman in Twisk",
     description:
-      "Stuur een bericht naar Voorbeeldbedrijf. We reageren op werkdagen. Liever bellen? Het telefoonnummer en adres staan op deze pagina. We denken mee.",
+      "Bellen werkt het snelst. Laat uw naam en telefoonnummer achter als u liever teruggebeld wordt door Rob Nieman van Automotive Solutions.",
   } satisfies PageMeta,
   heading: "Contact",
   intro:
-    "Vertel kort wat je nodig hebt. Velden met 'verplicht' moeten worden ingevuld. We gebruiken je gegevens alleen om te reageren.",
+    "Een eerste gesprek is vrijblijvend. Zit ik in een werkplaats, dan bel ik u dezelfde dag terug.",
   breadcrumb: "Contact",
   detailsTitle: "Bedrijfsgegevens",
   form: {
-    title: "Stuur een bericht",
-    name: "Naam (verplicht)",
-    email: "E-mailadres (verplicht)",
+    title: "Liever dat ik u bel? Laat uw gegevens achter.",
+    name: "Naam",
     phone: "Telefoonnummer",
-    message: "Bericht (verplicht)",
+    message: "Waar gaat het over?",
+    requiredMark: "(verplicht)",
+    optionalMark: "(optioneel)",
     honeypot: "Website",
-    submit: "Verstuur bericht",
+    submit: "Bel mij terug",
     sending: "Bezig met versturen…",
-    privacyText: "Door te versturen ga je akkoord met de verwerking zoals beschreven in de",
-    privacyLink: "privacyverklaring",
-    success: "Bedankt. Je bericht is verstuurd. We reageren zo snel mogelijk.",
+    privacyText: "Uw gegevens gebruik ik alleen om u terug te bellen. Meer daarover staat in het",
+    privacyLink: "privacy statement",
+    success: "Dank u. Ik bel u zo snel mogelijk terug.",
     invalid: "Controleer de gemarkeerde velden en probeer het opnieuw.",
     turnstileMissing: "Bevestig eerst de spamcontrole onder het formulier.",
     turnstileFailed:
       "De spamcontrole is niet gelukt. Vernieuw de pagina en probeer het opnieuw.",
     notConfigured:
-      "Verzenden is nog niet ingesteld. Je bericht is niet verstuurd. Mail of bel ons via",
+      "Verzenden is nog niet ingesteld. Uw bericht is niet verstuurd. Mail of bel via",
     sendFailed:
-      "Het bericht kon niet worden verstuurd. Je vraag is niet aangekomen. Mail of bel ons via",
+      "Het bericht kon niet worden verstuurd. Uw vraag is niet aangekomen. Mail of bel via",
     turnstileNotReady:
-      "De spamcontrole is nog niet ingesteld op deze site. Mail of bel ons via",
+      "De spamcontrole is nog niet ingesteld op deze site. Mail of bel via",
     errors: {
-      name: "Vul je naam in, met minimaal 2 tekens.",
+      name: "Vul uw naam in, met minimaal 2 tekens.",
       nameLength: "Deze naam is te lang. Gebruik maximaal 100 tekens.",
-      email: "Vul een geldig e-mailadres in.",
-      phone: "Dit telefoonnummer is te lang. Gebruik maximaal 30 tekens.",
-      message: "Schrijf een bericht van minimaal 10 tekens.",
+      phone: "Vul een geldig Nederlands telefoonnummer in, bijvoorbeeld 06-45682968.",
       messageLength: "Dit bericht is te lang. Gebruik maximaal 5000 tekens.",
     },
   },

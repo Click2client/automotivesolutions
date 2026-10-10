@@ -1,42 +1,56 @@
-import { Card } from "@/components/ui/Card";
-import { Container } from "@/components/ui/Container";
-import type { ServicesContent } from "@/content/types";
-import { toHeadingId } from "@/lib/slug";
-
-type ServicesProps = ServicesContent & {
-  headingLevel?: "h1" | "h2";
+type ServiceItem = {
+  number: string;
+  title: string;
+  intro: string;
+  points: string[];
 };
 
-export function Services({ title, intro, items, headingLevel = "h2" }: ServicesProps) {
-  const headingId = toHeadingId(title);
-  const Heading = headingLevel === "h1" ? "h1" : "h2";
-  const ItemHeading = headingLevel === "h1" ? "h2" : "h3";
+type ServicesContent = {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  items: ServiceItem[];
+};
 
+export function Services({ services }: { services: ServicesContent }) {
   return (
-    <section aria-labelledby={headingId} className="py-16">
-      <Container>
-        <div className="max-w-2xl">
-          <Heading id={headingId} className="font-heading text-3xl text-ink sm:text-4xl">
-            {title}
-          </Heading>
-          <p className="mt-4 text-lg text-muted">{intro}</p>
+    <section
+      id="diensten"
+      className="scroll-mt-[100px] border-y border-line bg-surface-warm px-[clamp(20px,5vw,72px)] py-[clamp(80px,10vw,140px)]"
+    >
+      <div className="mx-auto max-w-[1320px]">
+        <div data-reveal className="mb-[clamp(48px,6vw,80px)] max-w-[720px]">
+          <p className="mb-5 text-[13px] font-semibold tracking-[0.14em] text-primary uppercase">
+            {services.eyebrow}
+          </p>
+          <h2 className="mb-6 font-heading text-[clamp(32px,3.6vw,52px)] leading-[1.1] font-medium tracking-[-0.02em] text-ink">
+            {services.title}
+          </h2>
+          <p className="text-lg leading-[1.7] text-body">{services.intro}</p>
         </div>
-        <ul className="mt-10 grid gap-6 md:grid-cols-3">
-          {items.map((item, index) => (
-            <li key={item.title}>
-              <Card>
-                <p className="font-heading text-sm text-accent">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <ItemHeading className="mt-3 font-heading text-2xl text-ink">
-                  {item.title}
-                </ItemHeading>
-                <p className="mt-3 text-muted">{item.description}</p>
-              </Card>
-            </li>
+        <div className="grid gap-6 min-[981px]:grid-cols-3">
+          {services.items.map((item) => (
+            <article
+              key={item.number}
+              data-reveal
+              className="flex flex-col rounded-[4px] border border-line bg-surface px-9 py-10 motion-safe:transition-[transform,box-shadow] motion-safe:duration-[350ms] motion-safe:ease-out hover:-translate-y-[3px] hover:shadow-[0_18px_40px_-24px_rgba(22,24,27,0.25)]"
+            >
+              <p className="mb-7 font-heading text-sm text-secondary tabular-nums">{item.number}</p>
+              <h3 className="mb-4 font-heading text-[26px] font-medium tracking-[-0.015em] text-ink">
+                {item.title}
+              </h3>
+              <p className="mb-6 text-base leading-[1.65] text-body">{item.intro}</p>
+              <ul className="mt-auto grid gap-3 text-[15px] leading-normal text-body">
+                {item.points.map((point) => (
+                  <li key={point} className="border-t border-line pt-3">
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
-        </ul>
-      </Container>
+        </div>
+      </div>
     </section>
   );
 }

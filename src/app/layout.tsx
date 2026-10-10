@@ -1,27 +1,27 @@
 import type { Metadata } from "next";
-import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 
 import {
   GoogleTagManager,
   GoogleTagManagerNoScript,
 } from "@/components/analytics/GoogleTagManager";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { site } from "@/config/site";
 import { getSiteUrl, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import "./globals.css";
 
-const sourceSans = Source_Sans_3({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-source-sans",
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
   display: "swap",
 });
 
-const fraunces = Fraunces({
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  weight: ["400", "500", "600"],
+  variable: "--font-inter-tight",
   display: "swap",
 });
 
@@ -42,22 +42,18 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
-  verification: {
-    google: site.verification.google,
-  },
+  ...(site.verification.google
+    ? { verification: { google: site.verification.google } }
+    : {}),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="nl" className={`${sourceSans.variable} ${fraunces.variable} h-full`}>
-      <body className="flex min-h-full flex-col bg-paper font-sans text-ink antialiased">
+    <html lang="nl" className={`${inter.variable} ${interTight.variable} h-full`}>
+      <body className="flex min-h-full flex-col bg-surface font-sans text-body antialiased">
         <GoogleTagManagerNoScript />
         <SkipLink />
-        <Header />
-        <main id="main" tabIndex={-1} className="flex-1 scroll-mt-20">
-          {children}
-        </main>
-        <Footer />
+        {children}
         <GoogleTagManager />
         <JsonLd data={organizationJsonLd()} />
         <JsonLd data={websiteJsonLd()} />

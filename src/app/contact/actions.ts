@@ -32,7 +32,6 @@ export async function submitContact(
 
   const parsed = contactSchema.safeParse({
     name: readString(formData, "name"),
-    email: readString(formData, "email"),
     phone: readString(formData, "phone"),
     message: readString(formData, "message"),
   });
@@ -89,5 +88,5 @@ export async function submitContact(
 }
 
 function isContactField(value: string): value is ContactField {
-  return value === "name" || value === "email" || value === "phone" || value === "message";
+  return value === "name" || value === "phone" || value === "message";
 }
