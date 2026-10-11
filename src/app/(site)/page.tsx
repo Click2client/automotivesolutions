@@ -6,10 +6,8 @@ import { ContactSection } from "@/components/sections/ContactSection";
 import { FactStrip } from "@/components/sections/FactStrip";
 import { Hero } from "@/components/sections/Hero";
 import { Process } from "@/components/sections/Process";
-import { References } from "@/components/sections/References";
 import { Services } from "@/components/sections/Services";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { site } from "@/config/site";
 import { homeContent } from "@/content/home";
 import { createMetadata, servicesJsonLd } from "@/lib/seo";
 
@@ -28,7 +26,6 @@ export default function HomePage() {
       <Services services={homeContent.services} />
       <Approach approach={homeContent.approach} />
       <Process process={homeContent.process} />
-      {site.features.showReferences ? <References references={homeContent.references} /> : null}
       <ContactSection contact={homeContent.contact} />
       <JsonLd
         data={servicesJsonLd(

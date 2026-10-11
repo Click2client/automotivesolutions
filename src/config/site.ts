@@ -58,7 +58,6 @@ export const site = {
     lastUpdated: "10 oktober 2026",
   },
   features: {
-    showReferences: true,
     showForm: true,
     showMap: true,
   },
@@ -91,7 +90,7 @@ export const site = {
   footerNavigation: NavItem[];
   pages: SitePage[];
   legal: { hasTerms: boolean; lastUpdated: string };
-  features: { showReferences: boolean; showForm: boolean; showMap: boolean };
+  features: { showForm: boolean; showMap: boolean };
   verification: { google: string };
   credit: { label: string; url: string };
 };

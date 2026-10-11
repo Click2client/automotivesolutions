@@ -156,19 +156,6 @@ export const homeContent = {
       },
     ],
   },
-  references: {
-    eyebrow: "Referenties",
-    quotes: [
-      {
-        text: "[Quote klant – één tot twee zinnen over de samenwerking met Rob]",
-        by: "[Naam] · [Functie], [Bedrijf]",
-      },
-      {
-        text: "[Quote klant – één tot twee zinnen over het resultaat]",
-        by: "[Naam] · [Functie], [Bedrijf]",
-      },
-    ],
-  },
   contact: {
     eyebrow: "Contact",
     title: "Bellen werkt het snelst.",
